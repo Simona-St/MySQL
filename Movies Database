@@ -1,0 +1,57 @@
+CREATE TABLE directors (
+id INT(11) auto_increment PRIMARY KEY NOT NULL,
+director_name VARCHAR(255),
+notes LONGTEXT
+);
+CREATE TABLE genres (id INT(11) auto_increment PRIMARY KEY NOT NULL,
+genre_name VARCHAR(255) NOT NULL,
+notes TINYTEXT);
+
+CREATE TABLE categories (
+id INT(11) auto_increment PRIMARY KEY NOT NULL,
+category_name VARCHAR(255) NOT NULL,
+notes LONGTEXT);
+
+CREATE TABLE movies
+(id INT(11) auto_increment PRIMARY KEY NOT NULL,
+title VARCHAR(255) NOT NULL,
+director_id INT(11) NOT NULL,
+copyright_year SMALLINT,
+length DECIMAL (11,2),
+genre_id INT(11) NOT NULL,
+category_id INT(11) NOT NULL,
+rating DECIMAL(11,2),
+notes LONGTEXT,
+CONSTRAINT FK_genreID FOREIGN KEY (genre_id)
+REFERENCES genres(id),
+CONSTRAINT FK_directorID FOREIGN KEY (director_id)
+REFERENCES directors(id),
+CONSTRAINT FK_categoryID FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+
+INSERT INTO `directors` VALUES (1,'quo','Voluptatem quia doloremque eos ipsa omnis sed. Quis cupiditate dolor ut deserunt. Ducimus dolorem ut consequuntur sunt in. Iusto sint nemo nihil omnis officia enim aut.'),
+(2,'similique','Voluptates ipsam est sed. Molestias iure ut non aspernatur consequatur. Qui ipsa nesciunt atque corporis et. Illo libero est et. Eos non necessitatibus illum ipsam rerum cumque sint.'),
+(3,'voluptate','Asperiores aliquam similique est eligendi facere in. Ut qui voluptates aut iste. Repellat molestiae iure excepturi fuga. Aperiam neque ab architecto tempora.'),
+(4,'doloremque','Ut mollitia eos reprehenderit consectetur temporibus similique sunt. Rerum inventore nostrum sed nihil molestiae. Vitae itaque corrupti nam nemo vero. Ipsa fuga quia sit dicta eaque totam.'),
+(5,'nobis','Consequatur qui iste ut sequi eaque fugiat. Rerum autem animi qui quidem quia velit. Est alias quibusdam explicabo quo ipsa numquam adipisci. Sed quia ducimus voluptatem fugiat nostrum et aut.'); 
+
+
+INSERT INTO `genres` VALUES (1,'quos','Quidem eius repudiandae et quibusdam nemo dignissimos. Cumque dolorum nisi atque aut est. Quis commodi molestias molestiae reiciendis tempore distinctio. Autem aperiam molestiae ad quidem.'),
+(2,'dolores','Ut quos modi deserunt aperiam. Nulla et odit temporibus commodi. Libero laborum eum occaecati voluptas sit. Cum molestias possimus quis quia dignissimos non repudiandae molestiae. Sed laboriosam et tenetur et sunt dolor.'),
+(3,'dicta','Consequuntur voluptates quis harum qui. Consectetur consequatur modi ducimus ut.'),
+(4,'rerum','Quia delectus sunt delectus quaerat. Atque suscipit doloribus ipsa occaecati quia. Voluptates sit explicabo quam exercitationem eos.'),
+(5,'id','Quis repellat omnis assumenda voluptates ab nihil quia. Qui beatae doloremque ea sint. Quibusdam dolorum deleniti exercitationem voluptatem. Qui et ad aut in est laudantium.'); 
+
+INSERT INTO `categories` VALUES (1,'nihil','Ea iste quibusdam est labore reiciendis est est. Rerum ea quo expedita ullam inventore. Ut porro expedita et beatae voluptas quibusdam eius. Vero veniam est totam omnis alias culpa.'),
+(2,'earum','Culpa adipisci autem numquam dolorem corporis ea distinctio. Possimus maiores eum beatae veritatis. Sequi non quos et. Fugiat atque adipisci rerum et illum assumenda dignissimos.'),
+(3,'facere','Aut dolorum sequi amet mollitia. Est quo voluptatem et aut recusandae. Quasi inventore dolor a dolorum. Cum eveniet repellendus nobis.'),
+(4,'aut','Hic alias perferendis itaque ea officia numquam velit. Inventore sit nihil omnis a aut ut. At quos sit recusandae minus qui optio facilis. Maxime dolor voluptas non molestiae cumque ut dolor.'),
+(5,'expedita','Unde odit quos eum necessitatibus. Quod voluptatem eius beatae cumque. Ea accusamus ut cupiditate iusto tenetur tenetur molestiae et. Asperiores consequatur eos necessitatibus hic recusandae ea.'); 
+
+
+INSERT INTO `movies` VALUES (1,'nihil', 1, 2008, 2.5, 1, 1, 2.2, 'TSTSTATSTST tsttststsw'),
+(2,'test2', 2, 2008, 2.5, 2, 2, 2.5, 'TSTSTgggggggggggggggw'),
+(3,'test3', 3, 2008, 1.2, 3, 3, 2.4, 'gagsgsgsgsfr'),
+(4,'test4', 4, 2008, 3.6, 4, 4, 2.3, 'gkjgjsgnjsjg'), 
+(5,'test5', 5, 2008, 1.4, 5, 5, 2.1, 'uuuuuuuuuuuueeeeeeeeeeee');
