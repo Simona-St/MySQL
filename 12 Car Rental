@@ -1,0 +1,89 @@
+CREATE TABLE categories(
+id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+ category VARCHAR(255),
+ daily_rate DECIMAL(11,2),
+ weekly_rate DECIMAL(11,2),
+ monthly_rate DECIMAL(11,2),
+ weekend_rate DECIMAL(11,2)
+); 
+
+CREATE TABLE cars(
+id INT(11) PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+plate_number INT(11), 
+make VARCHAR(255),
+model VARCHAR(255),
+car_year SMALLINT,
+category_id INT(11) NOT NULL,
+doors INT(11),
+picture LONGBLOB,
+car_condition VARCHAR(255),
+available VARCHAR(255), 
+CONSTRAINT FK_categoryID FOREIGN KEY (category_id)
+REFERENCES categories(id)
+); 
+
+
+CREATE TABLE employees (
+id INT(11) PRIMARY KEY  NOT NULL AUTO_INCREMENT,
+first_name VARCHAR(255),
+last_name VARCHAR(255),
+title VARCHAR(255), 
+notes LONGTEXT
+); 
+
+CREATE TABLE customers(
+id INT(11) PRIMARY KEY  NOT NULL AUTO_INCREMENT, 
+driver_licence_number INT(11),
+full_name VARCHAR(255),
+address VARCHAR(255),
+city VARCHAR(255),
+zip_code INT(11),
+notes LONGTEXT
+); 
+
+CREATE TABLE rental_orders (
+id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+employee_id INT(11) NOT NULL,
+customer_id INT(11) NOT NULL,
+car_id INT(11) NOT NULL, 
+car_condition VARCHAR(255),
+tank_level DECIMAL(11,2),
+kilometrage_start INT(11) NOT NULL, 
+kilometrage_end INT(11) NOT NULL,
+total_kilometrage INT(11) NOT NULL,
+start_date DATE,
+end_date DATE,
+total_days INT(11), 
+rate_applied DECIMAL(11,2),
+tax_rate DECIMAL(11,2), 
+order_status VARCHAR(255),
+notes LONGTEXT,
+CONSTRAINT FK_employeeID FOREIGN KEY (employee_id)
+REFERENCES employees(id),
+CONSTRAINT FK_cusotomerID FOREIGN KEY (customer_id)
+REFERENCES customers(id),
+CONSTRAINT FK_carID FOREIGN KEY (car_id) REFERENCES cars(id)
+);
+
+INSERT INTO `employees` VALUES ('1','Barney','Quigley','Accusantium aut et minus distinctio dignissimos cum beatae fugiat.','Vitae voluptatem blanditiis natus voluptas voluptatem rerum quis repellat. Alias quasi odit magni officia tempora explicabo incidunt. Voluptatum non sed dicta odit nam.'),
+('2','Frederique','Weber','Aut sit velit sequi ut.','Temporibus facilis numquam eos quo. Sapiente praesentium eligendi et qui est officiis libero. Doloremque aut minus voluptas voluptate in dolores. Voluptas aspernatur quia voluptatibus est.'),
+('3','Marcos','Rath','Sed sunt consequatur eum nemo dolor maxime est.','Dolorem earum ut ratione et autem recusandae. Id excepturi natus sed voluptatem ut aut. Asperiores consequatur voluptates eveniet incidunt aut.'); 
+
+INSERT INTO `customers` VALUES ('1','49678','Afton Turner','50494 Wendy Divide\nKundeshire, IN 46621','Emmetton','0','Consequatur consequatur praesentium harum aut quaerat. Repudiandae et itaque ea eum dolorum necessitatibus. Quod vitae accusantium et. Ut explicabo qui ut placeat provident. Quos molestiae dignissimos dolorem quos.'),
+('2','89','Heaven Keebler II','8870 Harris Forges Apt. 929\nLake Ursulaside, IA 59072','Port Destiny','0','Soluta nisi quidem beatae nam voluptatem consequuntur veritatis dolor. Rem est sint est in vero voluptatum id quidem. Sequi sit ipsum odio laborum ullam. Amet ut est aliquam ea et adipisci provident.'),
+('3','187580612','Laura Denesik','56594 Coby Vista Suite 432\nEast Lindsey, CO 46949-8372','Eleanorahaven','0','Quaerat excepturi velit veniam ipsam similique distinctio. Sequi est quo iste nobis molestias et. Voluptatibus ea beatae labore et incidunt illo iure asperiores. Ea occaecati dolores modi sed est.'); 
+
+INSERT INTO `categories` VALUES ('1','4','3.00','5.00','3.00','8.00'),
+('2','5','7.00','4.00','1.00','5.00'),
+('3','4','1.00','1.00','4.00','9.00'); 
+
+INSERT INTO `cars` VALUES ('1','4567743','ford','fiesta', 2009, 1, 5, null, 'new', 'available'),
+('2', '543636','fiat','uno', 2002, 2, 5, null, 'used', 'in stock'),
+('3', '86654','renault','clio', 2007, 1, 5, null, 'as good as new', 'available')
+;
+
+INSERT INTO `rental_orders` VALUES ('1', 1,1,1,NULL,NULL,'0','0','6703','1986-08-31','2006-11-17',NULL,NULL,NULL,'Vero qui aut nesciunt et iusto eos aliquam. Sed optio in eligendi possimus.','Corporis vel rem cum officia. Error molestiae vel minima error incidunt. Aliquid laborum error recusandae voluptatem. Quas minima voluptatibus autem suscipit porro ut.'),
+('2',2,2,2,NULL,NULL,'0','0','28883607','1978-05-04','1983-10-10',NULL,NULL,NULL,'Facere nemo perferendis eum distinctio sint molestiae odit debitis. Occaecati quo aperiam eaque sed ut. Esse alias architecto maiores necessitatibus.','Dolore ut nulla nihil quisquam nihil eos. Voluptatem dolor voluptatem animi ea. Repellat in quos quod rerum sint ut recusandae.'),
+('3',3,3,3,NULL,NULL,'0','0','1643497','2001-05-14','1983-08-18',NULL,NULL,NULL,'Inventore quis ea repudiandae aut laborum. Id tenetur aliquam optio laboriosam inventore. Voluptate tempore dolore doloremque sit ipsam nihil.','Ullam autem deserunt ipsa. Velit accusantium quia aperiam. Itaque odio possimus in tenetur et ipsam.'); 
+
+
